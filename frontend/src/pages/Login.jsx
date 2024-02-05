@@ -20,6 +20,7 @@ const LoginPage = () => {
 
 			if (response.status === 401) {
 				alert("Invalid email or password")
+				throw new Error("Invalid email or password")
 			}
 
 			const { token } = await response.json()
