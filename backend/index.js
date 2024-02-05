@@ -16,6 +16,10 @@ app.post("/submit-feedback", saveFeedback)
 // Endpoint for retrieving saved customer text messages with sentiments
 app.get("/feedbacks", getFeedbacks)
 
+app.get("/", (req, res) => {
+    res.send("Hello World")
+})
+
 // Start the server
 const port = 3000
 const host = "localhost"
