@@ -96,7 +96,7 @@ const LoginPage = () => {
 
 					<p className="mt-10 text-center text-sm text-gray-400">
 						Not a member?{" "}
-						<a href="/register" className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
+						<a href="/signup" className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
 							Sign up now
 						</a>
 					</p>
