@@ -6,7 +6,7 @@ const Feedback = () => {
 		const handleSubmit = async (event) => {
 			event.preventDefault()
 
-			const response = await fetch("http://localhost:3000/submit-feedback", {
+			const response = await fetch("https://acme-feedbacks.publicvm.com/api/submit-feedback", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

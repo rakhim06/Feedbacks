@@ -7,7 +7,7 @@ const Feedbacks = () => {
 	const [feedbackCounts, setFeedbackCounts] = useState({ positive: 0, negative: 0, neutral: 0, total: 0 })
 
 	useEffect(() => {
-		fetch("http://localhost:3000/feedbacks")
+		fetch("https://acme-feedbacks.publicvm.com/api/feedbacks")
 			.then((response) => response.json())
 			.then((data) => {
 				const sortedFeedbacks = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
