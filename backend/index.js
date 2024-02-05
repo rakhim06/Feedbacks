@@ -2,6 +2,7 @@ const fastify = require("fastify")
 const cors = require("@fastify/cors")
 
 const { saveFeedback, getFeedbacks } = require("./src/Controllers/Feedbacks")
+const { createUser, login } = require("./src/Controllers/User")
 // Create a Fastify app
 const app = fastify()
 app.register(cors, {
@@ -16,9 +17,19 @@ app.post("/submit-feedback", saveFeedback)
 // Endpoint for retrieving saved customer text messages with sentiments
 app.get("/feedbacks", getFeedbacks)
 
-app.get("/", (req, res) => {
-    res.send("Hello World")
+
+app.get("/health", (req, res) => {
+    res.send("OK")
 })
+
+app.get("/", (req, res) => {
+    res.send("Welcome to the feedbacks API")
+})
+
+// Endpoint for user registration
+app.post("/create-user", createUser)
+// Endpoint for user login
+app.post("/login", login)
 
 // Start the server
 const port = 3000

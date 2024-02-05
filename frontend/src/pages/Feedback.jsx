@@ -15,13 +15,13 @@ const Feedback = () => {
 			})
 
 			if (response.ok) {
-				console.log("Feedback submitted")
+				alert("Feedback submitted")
 			} else {
-				console.error("Error submitting feedback")
+				alert("Error submitting feedback")
 			}
 		}
 	return (
-		<div className="bg-black text-white py-20 w-screen h-screen">
+		<div className="text-white py-20 w-screen h-screen">
 			<div className="container mx-auto flex flex-col md:flex-row my-6 md:my-24">
 				<div className="flex flex-col w-full lg:w-1/3 p-8">
 					<h3 className="text-3xl text-red-400 md:text-5xl my-4 leading-relaxed md:leading-snug font-semibold">We Value Your Feedback!</h3>
