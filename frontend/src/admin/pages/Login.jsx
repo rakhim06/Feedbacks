@@ -18,7 +18,7 @@ const LoginPage = () => {
 				body: JSON.stringify({ email, password }),
 			})
 
-			if (response.status === 401) {
+			if (!response.ok) {
 				alert("Invalid email or password")
 				throw new Error("Invalid email or password")
 			}
@@ -30,7 +30,7 @@ const LoginPage = () => {
 
 			// Redirect to the feedbackss page
             console.log("Login successful")
-            navigate("/feedbacks")
+            navigate("/admin/feedbacks")
 		} catch (error) {
 			console.error("Login error:", error)
 			// Handle login error (display a message, etc.)
@@ -62,6 +62,7 @@ const LoginPage = () => {
 									required
 									className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 								/>
+								<p className="block text-sm font-medium leading-6 text-white">Email: admin@acme.com</p>
 							</div>
 						</div>
 
@@ -82,6 +83,7 @@ const LoginPage = () => {
 									required
 									className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 								/>
+								<p className="block text-sm font-medium leading-6 text-white">Password: admin</p>
 							</div>
 						</div>
 
@@ -95,12 +97,7 @@ const LoginPage = () => {
 						</div>
 					</form>
 
-					<p className="mt-10 text-center text-sm text-gray-400">
-						Not a member?{" "}
-						<a href="/signup" className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
-							Sign up now
-						</a>
-					</p>
+
 				</div>
 			</div>
 		</>

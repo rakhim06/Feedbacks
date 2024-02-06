@@ -1,25 +1,25 @@
 import { useState } from "react"
 
 const Feedback = () => {
-		const [name, setName] = useState("")
-		const [feedback, setFeedback] = useState("")
-		const handleSubmit = async (event) => {
-			event.preventDefault()
+	const [name, setName] = useState("")
+	const [feedback, setFeedback] = useState("")
+	const handleSubmit = async (event) => {
+		event.preventDefault()
 
-			const response = await fetch("https://acme-feedbacks.publicvm.com/api/submit-feedback", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ name: name, text: feedback }),
-			})
+		const response = await fetch("https://acme-feedbacks.publicvm.com/api/submit-feedback", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ name: name, text: feedback }),
+		})
 
-			if (response.ok) {
-				alert("Feedback submitted")
-			} else {
-				alert("Error submitting feedback")
-			}
+		if (response.ok) {
+			alert("Feedback submitted")
+		} else {
+			alert("Error submitting feedback")
 		}
+	}
 	return (
 		<div className="text-white py-20 w-screen h-screen">
 			<div className="container mx-auto flex flex-col md:flex-row my-6 md:my-24">
@@ -45,6 +45,7 @@ const Feedback = () => {
 														Name
 													</label>
 													<input
+														value={name}
 														onChange={(e) => setName(e.target.value)}
 														type="text"
 														name="name"
