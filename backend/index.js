@@ -4,7 +4,7 @@ const cors = require("@fastify/cors")
 const { saveFeedback, getFeedbacks } = require("./src/Controllers/Feedbacks")
 const { login } = require("./src/Controllers/User")
 const verifyJWTandLevel = require("./src/Middleware/authorization")
-// Create a Fastify app
+
 const app = fastify()
 app.register(cors, {
 	origin: "*",

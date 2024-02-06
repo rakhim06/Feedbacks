@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
 		updatedAt: "updatedAt",
 	}
 )
-// Avant de sauvegarder le mot de passe, nous le hachons avec bcrypt
+
 userSchema.pre("save", function (next) {
 	const user = this
 
