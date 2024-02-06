@@ -6,38 +6,46 @@ import { useNavigate } from "react-router-dom"
 const Feedbacks = () => {
 	const [feedbacks, setFeedbacks] = useState([])
 	const [feedbackCounts, setFeedbackCounts] = useState({ positive: 0, negative: 0, neutral: 0, total: 0 })
-	const loggedInUser = localStorage.getItem("token")
 	const navigate = useNavigate()
 
 	useEffect(() => {
+		const loggedInUser = localStorage.getItem("token")
 		if (!loggedInUser) {
-			navigate("/login")
-		} else {
-			fetch("https://acme-feedbacks.publicvm.com/api/feedbacks")
-				.then((response) => response.json())
-				.then((data) => {
-					const sortedFeedbacks = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-					setFeedbacks(sortedFeedbacks)
-
-					const feedbackCounts = data.reduce(
-						(counts, feedback) => {
-							if (feedback.sentiment === "positive") {
-								counts.positive += 1
-							} else if (feedback.sentiment === "negative") {
-								counts.negative += 1
-							} else if (feedback.sentiment === "neutral") {
-								counts.neutral += 1
-							}
-							counts.total = data.length
-							return counts
-						},
-						{ positive: 0, negative: 0, neutral: 0, total: 0 }
-					)
-					setFeedbackCounts(feedbackCounts)
-				})
-				.catch((error) => console.log(error))
+			navigate("/admin/login")
 		}
-	}, [])
+		fetch("https://acme-feedbacks.publicvm.com/api/admin/feedbacks", {
+			headers: {
+				Authorization: loggedInUser,
+			},
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Unauthorized access to feedbacks page. Please login as administrator.")
+				}
+				return response.json()
+			})
+			.then((data) => {
+				const sortedFeedbacks = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+				setFeedbacks(sortedFeedbacks)
+
+				const feedbackCounts = data.reduce(
+					(counts, feedback) => {
+						if (feedback.sentiment === "positive") {
+							counts.positive += 1
+						} else if (feedback.sentiment === "negative") {
+							counts.negative += 1
+						} else if (feedback.sentiment === "neutral") {
+							counts.neutral += 1
+						}
+						counts.total = data.length
+						return counts
+					},
+					{ positive: 0, negative: 0, neutral: 0, total: 0 }
+				)
+				setFeedbackCounts(feedbackCounts)
+			})
+			.catch((error) => alert(error))
+	}, [navigate])
 
 	return (
 		<div>

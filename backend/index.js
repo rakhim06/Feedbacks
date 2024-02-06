@@ -32,7 +32,6 @@ app.get("/", (req, res) => {
 	res.send("Welcome to the feedbacks API")
 })
 
-// Endpoint for user registration
 // Endpoint for user login
 app.post("/login", login)
 

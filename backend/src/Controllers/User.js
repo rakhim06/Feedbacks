@@ -22,7 +22,7 @@ async function login(req, res) {
 		}
 		console.log(user)
 		// Create a JWT token
-		const token = jwt.sign({ userId: user._id, name: user.name, role: user.role }, "a-secret", { expiresIn: "1h" })
+		const token = jwt.sign({ userId: user._id, name: user.name, role: user.role }, "a-secret", { expiresIn: "1d" })
 
 		res.send({ token })
 	} catch (error) {
