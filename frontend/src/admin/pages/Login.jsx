@@ -62,8 +62,7 @@ const LoginPage = () => {
 									required
 									className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 								/>
-								<p className="block text-sm font-medium leading-6 text-white">Email: admin@acme-corp.com</p>
-							</div>
+ 							</div>
 						</div>
 
 						<div>
@@ -83,8 +82,7 @@ const LoginPage = () => {
 									required
 									className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
 								/>
-								<p className="block text-sm font-medium leading-6 text-white">Password: admin</p>
-							</div>
+ 							</div>
 						</div>
 
 						<div>
@@ -94,6 +92,18 @@ const LoginPage = () => {
 							>
 								Sign in
 							</button>
+
+							<p className="mt-2 text-center text-sm font-medium leading-6 text-white">
+								User credentials:
+								<br />
+								email: user@acme-corp.com <br />
+								password: aze
+								<span className="block mt-2">or</span>
+								Admin credentials:
+								<br />
+								email: admin@acme-corp.com <br />
+								password: admin
+							</p>
 						</div>
 					</form>
 				</div>
