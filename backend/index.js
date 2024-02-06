@@ -3,6 +3,7 @@ const cors = require("@fastify/cors")
 
 const { saveFeedback, getFeedbacks } = require("./src/Controllers/Feedbacks")
 const { login } = require("./src/Controllers/User")
+const verifyJWTandLevel = require("./src/Middleware/authorization")
 // Create a Fastify app
 const app = fastify()
 app.register(cors, {
@@ -15,7 +16,13 @@ app.register(cors, {
 app.post("/submit-feedback", saveFeedback)
 
 // Endpoint for retrieving saved customer text messages with sentiments
-app.get("/feedbacks", getFeedbacks)
+// Middleware to verify JWT token and check user role
+app
+	.decorate("verifyJWTandLevel", verifyJWTandLevel)
+	.register(require("@fastify/auth"))
+	.after(() => {
+		app.get("/admin/feedbacks", { preHandler: app.auth([app.verifyJWTandLevel]) }, getFeedbacks)
+	})
 
 app.get("/health", (req, res) => {
 	res.send("OK")
