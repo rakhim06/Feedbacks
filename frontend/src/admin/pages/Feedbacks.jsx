@@ -57,7 +57,7 @@ const Feedbacks = () => {
 							<div className="mt-2 flex items-center text-sm text-gray-50 ">Total : {feedbackCounts.total}</div>
 							<div className="mt-2 flex items-center text-sm text-gray-50 ">Positive : {feedbackCounts.positive} </div>
 							<div className="mt-2 flex items-center text-sm text-gray-50 ">Negative : {feedbackCounts.negative} </div>
-							<div className="mt-2 flex items-center text-sm text-gray-50 ">Negative : {feedbackCounts.neutral} </div>
+							<div className="mt-2 flex items-center text-sm text-gray-50 ">Neutral : {feedbackCounts.neutral} </div>
 						</div>
 					</div>
 				</div>
